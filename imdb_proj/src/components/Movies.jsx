@@ -3,18 +3,18 @@ import MovieCard from './MovieCard'
 import axios from 'axios'
 import Pagination from './Pagination'
 
-function Movies() {
+function Movies({handelAddtoWatchlist, handelRemoveFromWatchlist, watchlist}) {
 
   const [movies,  setmovies] = useState([])
   const [pageNo, setpageNo] = useState(1)
 
   const handlePrev = () =>{
-    if (pageNo==1)(
+    if (pageNo==1){
       setpageNo(pageNo)
-    )
-    else(
+    }
+    else{
       setpageNo(pageNo-1)
-    )
+    }
   }
 
   const handleFrow = () =>{
@@ -35,7 +35,7 @@ function Movies() {
 
         <div className='flex flex-row flex-wrap justify-around gap-5'>
             {movies.map((movieObj) => {
-                 return <MovieCard poster_path={movieObj.poster_path} name={movieObj.original_title}/>   // original_title is movie title name that is present in api
+                 return <MovieCard key={movieObj.id} movieObj={movieObj} poster_path={movieObj.poster_path} name={movieObj.original_title} handelAddtoWatchlist={handelAddtoWatchlist} handelRemoveFromWatchlist={handelRemoveFromWatchlist} watchlist={watchlist} />   // original_title is movie title name that is present in api
             })}
             
         </div>
